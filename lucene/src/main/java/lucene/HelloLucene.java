@@ -15,6 +15,7 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -98,7 +99,7 @@ public class HelloLucene
 			Query query = queryParser.parse("third");
 			
 			//执行搜索得到TopDocs
-			TopDocs topDocs = idxSearcher.search(query, 10) ;
+			TopDocs topDocs = idxSearcher.search(query, 10 , Sort.INDEXORDER) ;
 			
 			ScoreDoc[] docs = topDocs.scoreDocs ;
 			
