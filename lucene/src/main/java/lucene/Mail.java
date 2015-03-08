@@ -1,6 +1,12 @@
 package lucene;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Mail {
+	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	private String name ;
 	
@@ -12,15 +18,22 @@ public class Mail {
 	
 	private String email ;
 
+	private Date date ;
+	
 	public Mail() {}
 
 	public Mail(String name, int attachs, String id, String content,
-			String email) {
+			String email , String date) {
 		this.name = name;
 		this.attachs = attachs;
 		this.id = id;
 		this.content = content;
 		this.email = email;
+		try {
+			this.date = sdf.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getName() {
@@ -61,6 +74,14 @@ public class Mail {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
